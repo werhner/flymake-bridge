@@ -82,6 +82,9 @@ Calls REPORT-FN directly."
   "Add `flymake-bridge' to diagnositc functions if not yet."
   (unless (memq 'flymake-bridge flymake-diagnostic-functions)
     (setq lsp-bridge-diagnostic-enable-overlays nil)
+    (setq-local flymake-start-on-flymake-mode t)
+    (setq-local flymake-start-on-save-buffer nil)
+    (setq-local flymake-no-changes-timeout nil)
     (add-hook 'flymake-diagnostic-functions #'flymake-bridge nil t)
     (add-hook 'lsp-bridge-diagnostic-update-hook #'flymake-start nil t)
     (flymake-mode 1))
